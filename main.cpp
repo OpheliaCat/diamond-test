@@ -3,6 +3,8 @@
 #include <string>
 #include <cmath>
 
+#define PI "3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679"
+
 int reverse(int n) {
     int reversed = 0;
     while (n > 0) {
@@ -82,6 +84,16 @@ int sum_of_all_formulas(std::string s, int acc) {
     return sum;
 }
 
+int count_occurrences_of_number_in_pi(int n) {
+    std::string pi(PI);
+    int i = pi.find(std::to_string(n)), occurrences = 0;
+    while (i != std::string::npos) {
+        occurrences++;
+        i = pi.find(std::to_string(n), i + 1);
+    }
+    return occurrences;
+}
+
 
 int main() {
     int choice;
@@ -96,7 +108,10 @@ int main() {
         switch (choice)
         {
         case 1:
-            /* code */
+            std::cout << "Enter n: ";
+            std::cin >> choice;
+            std::cout << "PI: " << PI << '\n';
+            std::cout << "Output: " << count_occurrences_of_number_in_pi(choice);
             break;
         case 2: {
             std::cout << "Enter n: ";
