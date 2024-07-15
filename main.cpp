@@ -111,7 +111,8 @@ int main() {
             std::cout << "Enter n: ";
             std::cin >> choice;
             std::cout << "PI: " << PI << '\n';
-            std::cout << "Output: " << count_occurrences_of_number_in_pi(choice);
+            std::cout << "Output: \n" << choice << " = " << count_occurrences_of_number_in_pi(choice) 
+                << '\n' << reverse(choice) << " = " << count_occurrences_of_number_in_pi(reverse(choice));
             break;
         case 2: {
             std::cout << "Enter n: ";
