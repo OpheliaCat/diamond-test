@@ -72,6 +72,16 @@ std::string get_algorithm_for_s_to_t_(std::string s, std::string t) {
     return output;
 }
 
+int sum_of_all_formulas(std::string s, int acc) {
+    int i, sum = 0;
+    if (s.size() == 0) return acc;
+    for (i = 1; i <= s.size(); i++) {
+        sum += sum_of_all_formulas(s.substr(i), acc + std::stoi(s.substr(0, i)));
+    }
+    
+    return sum;
+}
+
 
 int main() {
     int choice;
@@ -80,7 +90,7 @@ int main() {
         std::cout << "\n[1] COUNT NUMBER & IT's MIRROR OCCURRENCES IN PI";
         std::cout << "\n[2] FIND PALINDROMIC PRIMES LESS THAN n";
         std::cout << "\n[3] CHANGE s TO t ALGORITHM STEPS";
-        std::cout << "\n[4] ...\n";
+        std::cout << "\n[4] SUM OF THE RESULTS OF ALL FORMULAS WHEN + IS INSERTED IN THIS STRING IN ALL PATTERNS\n";
         std::cin >> choice;
         //choice.erase(0, choice.find_first_not_of(" \n\r\t"));
         switch (choice)
@@ -105,6 +115,13 @@ int main() {
             std::cout << "Enter t: ";
             std::cin >> t;
             std::cout << get_algorithm_for_s_to_t_(s, t);
+            break;
+        }
+        case 4: {
+            std::string s;
+            std::cout << "Enter s: ";
+            std::cin >> s;
+            std::cout << "Output: " << sum_of_all_formulas(s, 0);
             break;
         }
             
