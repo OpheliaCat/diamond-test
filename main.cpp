@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <string>
+#include <cmath>
 
 int reverse(int n) {
     int reversed = 0;
@@ -37,15 +39,37 @@ std::vector<int> find_palindromic_primes(int n) {
     return palindromic_primes;
 }
 
-std::string get_algorithm_for_s_to_t_(const char* s, const char* t) {
-    int i, j;
+std::string get_algorithm_for_s_to_t_(std::string s, std::string t) {
+    int i, cost = 0;
     std::string output = "";
-    output.append()
-    for (i = 0; s[i] != '\0'; i++) {
-        
+    
+    for (i = 0; i < std::min(s.size(), t.size()); i++) {
+        if (s[i] == t[i]) continue;
+        output.append("replace ");
+        output.push_back(s[i]);
+        output.append(" -> ");
+        output.push_back(t[i]);
+        output.append("\n");
+        cost++;
     }
-    t[j] = '\0';
-    return t;
+    if (s.size() < t.size()) {
+        for (; i < t.size(); i++) {
+            output.append("insert ");
+            output.push_back(t[i]);
+            output.append("\n");
+            cost += 2;
+        }
+    } else {
+        for (; i < s.size(); i++) {
+            output.append("delete ");
+            output.push_back(s[i]);
+            output.append("\n");
+            cost += 3;
+        }
+    }
+    output.append("cost: ");
+    output.append(std::to_string(cost));
+    return output;
 }
 
 
@@ -72,6 +96,15 @@ int main() {
             for (int i = 0; i < output.size(); i++) {
                 std::cout << output[i] << ", ";
             }
+            break;
+        }
+        case 3: {
+            std::string s, t;
+            std::cout << "Enter s: ";
+            std::cin >> s;
+            std::cout << "Enter t: ";
+            std::cin >> t;
+            std::cout << get_algorithm_for_s_to_t_(s, t);
             break;
         }
             
